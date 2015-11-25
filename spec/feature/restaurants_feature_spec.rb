@@ -51,16 +51,16 @@ feature 'restaurants' do
 
   context 'editing restaurants' do
 
-    before { Restaurant.create name: 'KFC' }
-
     scenario 'let a user edit a restaurant' do
       sign_up
+      click_link 'Add a restaurant'
+      fill_in 'Name', with: 'AAA'
+      click_button 'Create Restaurant'
       visit '/restaurants'
-      click_link 'Edit KFC'
-      fill_in 'Name', with: 'Kentucky Fried Chicken'
+      click_link 'Edit AAA'
+      fill_in 'Name', with: 'Hello guys'
       click_button 'Update Restaurant'
-      expect(page).to have_content 'Kentucky Fried Chicken'
-      expect(current_path).to eq '/restaurants'
+      expect(page).to have_content 'Edit Hello guys'
     end
 
   end
@@ -88,6 +88,21 @@ feature 'restaurants' do
       click_button 'Create Restaurant'
       expect(page).not_to have_css 'h2', text: 'kf'
       expect(page).to have_content 'error'
+    end
+  end
+
+  context 'edit others restaurants' do
+
+
+    before {Restaurant.create name: 'KFC'}
+    scenario 'can not edit others restaurants' do
+
+      sign_up
+      visit '/restaurants'
+      click_link 'Edit KFC'
+      fill_in 'Name', with: 'Mc Donalds'
+      click_button 'Update Restaurant'
+      expect(page).to have_content 'You can not edit other restaurants'
     end
   end
 end
