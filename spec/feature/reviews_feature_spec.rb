@@ -26,6 +26,7 @@ feature 'reviewing' do
     click_link 'Review KFC'
     fill_in "Thoughts", with:"too fry"
     select '2', from: 'Rating'
-    expect{clicl_button 'Leave Review'}.to raise_error('you can leave only one review per restaurant')
+    click_button 'Leave Review'
+    expect(page).to have_content('You can leave only one review per restaurant')
   end
 end

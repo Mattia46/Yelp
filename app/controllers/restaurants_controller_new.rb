@@ -6,16 +6,15 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @restaurant = Restaurant.find(params[:restaurant_id])
     @review = Review.new(review_params)
+    @restaurant = Restaurant.find(params[:restaurant_id])
     @review.restaurant_id = @restaurant.id
-    @review.user_id = current_user.id
-    if @review.save
-      redirect_to restaurants_path
+    if current_user.id == @review.user_id && @review.restaurant_id == @restaurant.id
+      @review.save
     else
-      flash[:notice] = 'You can leave only one review per restaurant'
-      redirect_to '/restaurants'
+      flash[:notice] = 'You can not add more than one review per restaurant'
     end
+    redirect_to restaurants_path
   end
 
   def review_params
