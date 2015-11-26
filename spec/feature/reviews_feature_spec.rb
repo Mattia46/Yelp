@@ -15,4 +15,17 @@ feature 'reviewing' do
     expect(page).to have_content('too fry')
   end
 
+  scenario 'allows user to leave only one review for each restaurant' do
+    sign_up
+    visit '/restaurants'
+    click_link 'Review KFC'
+    fill_in "Thoughts", with:"too fry"
+    select '2', from: 'Rating'
+    click_button 'Leave Review'
+    visit '/restaurants'
+    click_link 'Review KFC'
+    fill_in "Thoughts", with:"too fry"
+    select '2', from: 'Rating'
+    expect{clicl_button 'Leave Review'}.to raise_error('you can leave only one review per restaurant')
+  end
 end
