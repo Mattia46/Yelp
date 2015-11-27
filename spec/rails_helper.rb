@@ -23,6 +23,13 @@ def sign_up
   click_button('Sign up')
 end
 
+def create_restaurant
+  visit '/'
+  click_link 'Add a restaurant'
+  fill_in 'Name', with: 'KFCC'
+  click_button 'Create Restaurant'
+end
+
 def leave_review(thoughts, rating)
   visit '/restaurants'
   click_link 'Review KFC'

@@ -73,10 +73,8 @@ feature 'restaurants' do
       sign_up
       visit '/restaurants'
       click_link 'Delete KFC'
-      expect(page).not_to have_content 'KFC'
-      expect(page).to have_content 'Restaurant deleted successfully'
+      expect(page).to have_content 'You did not create this restaurant'
     end
-
   end
 
   context 'an invalid restaurant' do
@@ -93,7 +91,6 @@ feature 'restaurants' do
 
   context 'edit others restaurants' do
 
-
     before {Restaurant.create name: 'KFC'}
     scenario 'can not edit others restaurants' do
 
@@ -103,6 +100,16 @@ feature 'restaurants' do
       fill_in 'Name', with: 'Mc Donalds'
       click_button 'Update Restaurant'
       expect(page).to have_content 'You can not edit other restaurants'
+    end
+  end
+
+  context 'delete others restaurants' do
+    scenario 'can not delete others restaurants' do
+      sign_up
+      create_restaurant
+      click_link 'Delete KFCC'
+      expect(page).not_to have_content 'KFCC'
+      expect(page).to have_content 'Restaurant deleted successfully'
     end
   end
 end
