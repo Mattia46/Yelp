@@ -38,6 +38,12 @@ feature 'reviewing' do
     expect(page).to have_content('You have to log in firts')
   end
 
+  scenario 'user can delete only his/hers review' do
+    sign_up
+    leave_review('good', 4)
+    click_link 'Delete KFC review'
+    expect(page).to have_content 'Review deleted successfully'
+  end
 
   scenario 'displays an average rating for all reviews' do
     sign_up
