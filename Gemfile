@@ -44,6 +44,7 @@ gem 'haml' #sostituisce il linguaggio html per ruby/views
 gem 'poltergeist'
 gem 'database_cleaner'
 # fine gems aggiunte da me
+gem 'twitter-bootstrap-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
