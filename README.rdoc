@@ -1,6 +1,6 @@
-== README
+YELP clone
 
-This application reproduce the Twitter app using MEAN stack technology
+This application reproduce the Yelp app using Ruby and Ruby on Rails
 
 To run it:
 
