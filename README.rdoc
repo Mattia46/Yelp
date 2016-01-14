@@ -2,3 +2,13 @@
 
 This application reproduce the Twitter app using MEAN stack technology
 
+To run it:
+```
+$ git clone https://github.com/Mattia46/Yelp/
+$ bin/rails s
+```
+
+To test it
+``` 
+$ rspec
+```
