@@ -16,6 +16,7 @@ Object orientation, folder structure, migrating the Databases correctly, test-dr
 * Postgresql
 * Phantom.js
 * Poltergeist
+* Devise
 
 ## To run it:
 ```
